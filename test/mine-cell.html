@@ -58,6 +58,21 @@
           cell.toggleFlag();
           expect(cell.flagged).to.be.false;
         });
+
+        it('should fire a `flagged` event if the cell was flagged', function() {
+          // Cell is flagged=false by default, so calling toggleFlag() on it
+          // should cause it to become flagged and trigger a `flagged` event.
+          sinon.spy(cell, 'fire');
+          cell.toggleFlag();
+          expect(cell.fire).to.have.been.calledWith('flagged');
+        });
+
+        it('should fire an `unflagged` event if the cell was unflagged', function() {
+          sinon.spy(cell, 'fire');
+          cell.flagged = true;
+          cell.toggleFlag();
+          expect(cell.fire).to.have.been.calledWith('unflagged');
+        });
       });
     });
 
