@@ -10,13 +10,14 @@
 
 <script>
 
+
   describe('<mine-cell>', function() {
 
-    var cell;
+    var cell = document.createElement('mine-cell');
 
-    beforeEach(function() {
+    var getNewCell = function() {
       cell = document.createElement('mine-cell');
-    });
+    };
 
     describe('Properties', function() {
       it('should have a `covered` property which is true by default', function() {
@@ -43,6 +44,8 @@
     });
 
     describe('API: toggleFlag()', function() {
+
+      beforeEach(getNewCell);
 
       context('When cell is covered', function() {
         it('should flag cell if it was nonflagged', function() {
