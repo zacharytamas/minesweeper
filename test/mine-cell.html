@@ -40,6 +40,25 @@
 
     describe('Flagging a cell with API', function() {
 
+      var cell;
+
+      beforeEach(function() {
+        cell = document.createElement('mine-cell');
+      });
+
+      context('When cell is covered', function() {
+        it('should flag cell if it was nonflagged', function() {
+          expect(cell.flagged).to.be.false;  // sanity
+          cell.toggleFlag();
+          expect(cell.flagged).to.be.true;
+        });
+
+        it('should unflag a cell if it was flagged', function() {
+          cell.flagged = true;
+          cell.toggleFlag();
+          expect(cell.flagged).to.be.false;
+        });
+      });
     });
 
     describe('Uncovering a cell with API', function() {
