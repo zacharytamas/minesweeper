@@ -21,11 +21,17 @@
     },
 
     toggleFlag: function() {
+      this.flagged = !this.flagged;
 
+      if (this.flagged) {
+        this.fire('flagged');
+      } else {
+        this.fire('unflagged');
+      }
     },
 
     uncover: function() {
-      
+
     }
   });
 
