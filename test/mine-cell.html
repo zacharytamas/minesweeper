@@ -18,6 +18,10 @@
       it('should have a `covered` property which is true by default', function() {
         expect($defaultCell.covered).to.exist.and.to.be.true;
       });
+
+      it('should have a `flagged` property which is false by default', function() {
+        expect($defaultCell.flagged).to.exist.and.to.be.false;
+      })
     });
 
   });
