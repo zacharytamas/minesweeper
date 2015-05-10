@@ -28,6 +28,11 @@
       });
     });
 
+    describe('Public methods', function() {
+      it('should have a `toggleFlag()` method', function() {
+        expect($defaultCell.toggleFlag).to.exist.and.to.be.a('function');
+      });
+    });
   });
 
 </script>
