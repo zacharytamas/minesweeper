@@ -21,13 +21,14 @@
     },
 
     toggleFlag: function() {
-      this.flagged = !this.flagged;
 
-      if (this.flagged) {
-        this.fire('flagged');
-      } else {
-        this.fire('unflagged');
+      // If this cell has been uncovered already it is ineligible for flagging.
+      if (! this.covered) {
+        return;
       }
+
+      this.flagged = !this.flagged;
+      this.fire(this.flagged ? 'flagged' : 'unflagged');
     },
 
     uncover: function() {
