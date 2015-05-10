@@ -12,9 +12,10 @@
 
   describe('<mine-cell>', function() {
 
+    var $defaultCell = document.createElement('mine-cell');
+
     describe('Properties', function() {
       it('should have a `covered` property which is true by default', function() {
-        var $cell = document.createElement('mine-cell');
         expect($cell.covered).to.exist;
         expect($cell.covered).to.be.true;
       });
