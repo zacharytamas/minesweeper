@@ -12,39 +12,37 @@
 
   describe('<mine-cell>', function() {
 
-    var $defaultCell = document.createElement('mine-cell');
+    var cell;
+
+    beforeEach(function() {
+      cell = document.createElement('mine-cell');
+    });
 
     describe('Properties', function() {
       it('should have a `covered` property which is true by default', function() {
-        expect($defaultCell.covered).to.exist.and.to.be.true;
+        expect(cell.covered).to.exist.and.to.be.true;
       });
 
       it('should have a `flagged` property which is false by default', function() {
-        expect($defaultCell.flagged).to.exist.and.to.be.false;
+        expect(cell.flagged).to.exist.and.to.be.false;
       })
 
       it('should have a `mine` property which is false by default', function() {
-        expect($defaultCell.mine).to.exist.and.to.be.false;
+        expect(cell.mine).to.exist.and.to.be.false;
       });
     });
 
     describe('Public methods', function() {
       it('should have a `toggleFlag()` method', function() {
-        expect($defaultCell.toggleFlag).to.exist.and.to.be.a('function');
+        expect(cell.toggleFlag).to.exist.and.to.be.a('function');
       });
 
       it('should have an `uncover()` method', function() {
-        expect($defaultCell.uncover).to.exist.and.to.be.a('function');
+        expect(cell.uncover).to.exist.and.to.be.a('function');
       })
     });
 
     describe('API: toggleFlag()', function() {
-
-      var cell;
-
-      beforeEach(function() {
-        cell = document.createElement('mine-cell');
-      });
 
       context('When cell is covered', function() {
         it('should flag cell if it was nonflagged', function() {
@@ -74,6 +72,7 @@
           expect(cell.fire).to.have.been.calledWith('unflagged');
         });
       });
+
       context('When cell is uncovered', function() {
 
         beforeEach(function() {
