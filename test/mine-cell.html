@@ -16,8 +16,7 @@
 
     describe('Properties', function() {
       it('should have a `covered` property which is true by default', function() {
-        expect($cell.covered).to.exist;
-        expect($cell.covered).to.be.true;
+        expect($defaultCell.covered).to.exist.and.to.be.true;
       });
     });
 
