@@ -38,7 +38,7 @@
       })
     });
 
-    describe('Flagging a cell with API', function() {
+    describe('API: toggleFlag()', function() {
 
       var cell;
 
@@ -72,6 +72,27 @@
           cell.flagged = true;
           cell.toggleFlag();
           expect(cell.fire).to.have.been.calledWith('unflagged');
+        });
+      });
+      context('When cell is uncovered', function() {
+
+        beforeEach(function() {
+          cell.covered = false;
+        });
+
+        it('should be an inert action, not affecting flagged property', function() {
+          // If a cell has been uncovered it cannot be flagged anymore.
+          expect(cell.flagged).to.be.false;
+          cell.toggleFlag();
+          // Should still be false.
+          expect(cell.flagged).to.be.false;
+        });
+
+        it('should not fire flagging events', function() {
+          sinon.spy(cell, 'fire');
+          cell.toggleFlag();
+          cell.toggleFlag();
+          expect(cell.fire).to.not.have.been.called;
         });
       });
     });
