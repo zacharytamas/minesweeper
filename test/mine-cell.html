@@ -99,8 +99,17 @@
       });
     });
 
-    describe('Uncovering a cell with API', function() {
+    describe('API: uncover()', function() {
 
+      beforeEach(getNewCell);
+
+      context('When cell is covered', function() {
+        it('should update covered property', function() {
+          expect(cell.covered).to.be.true;
+          cell.uncover();
+          expect(cell.covered).to.be.false;
+        });
+      });
     });
 
     describe('User interactions', function() {
