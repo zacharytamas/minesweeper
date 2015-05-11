@@ -15,7 +15,7 @@
 
     var cell = document.createElement('mine-cell');
 
-    var getNewCell = function() {
+    var getNewCell = function getNewCell() {
       cell = document.createElement('mine-cell');
     };
 
@@ -114,6 +114,17 @@
           sinon.spy(cell, 'fire');
           cell.uncover();
           expect(cell.fire).to.have.been.calledWith('uncovered');
+        });
+
+        context('When cell is a mine', function() {
+          it('should explode!', function() {
+            sinon.spy(cell, 'fire');
+
+            cell.mine = true;
+            cell.uncover();
+
+            expect(cell.fire).to.have.been.calledWith('exploded');
+          });
         });
       });
 
