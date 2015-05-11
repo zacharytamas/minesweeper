@@ -109,6 +109,31 @@
           cell.uncover();
           expect(cell.covered).to.be.false;
         });
+
+        it('should fire an `uncovered` event', function() {
+          sinon.spy(cell, 'fire');
+          cell.uncover();
+          expect(cell.fire).to.have.been.calledWith('uncovered');
+        });
+      });
+
+      context('When cell is uncovered', function() {
+
+        beforeEach(function() {
+          cell.covered = false;
+        });
+
+        it('should not change covered property', function() {
+          expect(cell.covered).to.be.false;
+          cell.uncover();
+          expect(cell.covered).to.be.false;
+        });
+
+        it('should not emit an `uncovered` event', function() {
+          sinon.spy(cell, 'fire');
+          cell.uncover();
+          expect(cell.fire).to.not.have.been.called;
+        });
       });
     });
 

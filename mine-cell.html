@@ -32,7 +32,10 @@
     },
 
     uncover: function() {
-      this.covered = false;
+      if (this.covered) {
+        this.covered = false;
+        this.fire('uncovered');
+      }
     }
   });
 
