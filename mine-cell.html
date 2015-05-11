@@ -32,14 +32,13 @@
     },
 
     uncover: function() {
-      if (this.covered) {
+      if (this.covered && !this.flagged) {
         this.covered = false;
         this.fire('uncovered');
 
         if (this.mine) {
           this.fire('exploded');
         }
-
       }
     }
   });

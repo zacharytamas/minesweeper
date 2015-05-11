@@ -116,7 +116,7 @@
           expect(cell.fire).to.have.been.calledWith('uncovered');
         });
 
-        context('When cell is a mine', function() {
+        context('When cell is also a mine', function() {
           it('should explode!', function() {
             sinon.spy(cell, 'fire');
 
@@ -124,6 +124,31 @@
             cell.uncover();
 
             expect(cell.fire).to.have.been.calledWith('exploded');
+          });
+        });
+
+        context('When cell is also flagged', function() {
+
+          // These tests test that the uncover() method basically does nothing
+          // if the cell is flagged. If a cell is flagged the user cannot
+          // interact with it until they unflag it. This means that you cannot
+          // accidentally explode a mine you already flagged as a mine.
+
+          beforeEach(function() {
+            cell.toggleFlag();
+          });
+
+          it('should not fire any events', function() {
+            sinon.spy(cell, 'fire');
+            cell.uncover();
+            expect(cell.fire).to.not.have.been.called;
+          });
+
+          it('should not affect the `covered` property', function() {
+            cell.uncover();
+            // It should still be covered, even though we attempted to
+            // uncover it.
+            expect(cell.covered).to.be.true;
           });
         });
       });
