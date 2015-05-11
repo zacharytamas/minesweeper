@@ -31,6 +31,10 @@
       it('should have a `mine` property which is false by default', function() {
         expect(cell.mine).to.exist.and.to.be.false;
       });
+
+      it('should have an `adjacentMines` property which is 0 by default', function() {
+        expect(cell.adjacentMines).to.exist.and.to.equal(0);
+      });
     });
 
     describe('Public methods', function() {
