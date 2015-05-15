@@ -183,9 +183,24 @@
 
     describe('Appearance', function() {
 
+      beforeEach(getNewCell);
+
       it('Should have an element with id `adjacent` in its local dom.', function() {
         expect(cell.$.adjacent).to.exist;
       });
+
+      context('When cell is covered', function() {
+        it('should hide the `adjacent` element', function() {
+          expect(cell.$.adjacent.getAttribute('hidden')).to.exist;
+        });
+      });
+
+      context('When cell is uncovered', function() {
+        it('should unhide the `adjacent` element', function() {
+          cell.uncover();
+          expect(cell.$.adjacent.getAttribute('hidden')).to.not.exist;
+        })
+      })
     });
 
   });
