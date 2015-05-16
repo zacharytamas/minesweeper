@@ -191,17 +191,29 @@
           expect(cell.$.adjacent).to.exist;
         });
 
-        context('When cell is covered', function() {
-          it('should hide the `adjacent` element', function() {
-            expect(cell.$.adjacent.getAttribute('hidden')).to.exist;
+        it('should show the correct number based on adjacentMines', function() {
+          _.each([0, 1, 2, 3, 4, 5, 6, 7, 8], function(val) {
+            cell.adjacentMines = val;
+            expect(cell.$.adjacent.innerText).to.equal(String(val));
           });
         });
 
-        context('When cell is uncovered', function() {
-          it('should unhide the `adjacent` element', function() {
-            cell.uncover();
-            expect(cell.$.adjacent.getAttribute('hidden')).to.not.exist;
-          });
+        it('should hide when the cell is covered or has no adjacent mines', function() {
+          // Case 1: Cell is covered
+          expect(cell.covered).to.be.true;
+          expect(cell.$.adjacent.hasAttribute('hidden')).to.be.true;
+
+          // Case 2: Cell is uncovered but has no adjacent mines, so it
+          // should be hidden still.
+          cell.uncover();
+          expect(cell.adjacentMines).to.equal(0);
+          expect(cell.$.adjacent.hasAttribute('hidden')).to.be.true;
+
+          // Case 3: Cell is uncovered and has adjacent mines, thus should
+          // NOT be hidden.
+          cell.adjacentMines = 2;
+          expect(cell.$.adjacent.hasAttribute('hidden')).to.not.be.true;
+
         });
 
       })
